@@ -11,6 +11,9 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     ImageView im;
+    float xInitial;
+    int[] mesImages = {R.drawable.img1, R.drawable.img2, R.drawable.img3,R.drawable.img4};
+    int pos = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,13 +29,22 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (action){
                     case MotionEvent.ACTION_DOWN:
-                        Toast.makeText(MainActivity.this, "Action commencee", Toast.LENGTH_SHORT).show();
-                        break;
-                    case MotionEvent.ACTION_MOVE:
-                        Toast.makeText(MainActivity.this, "Action en cours", Toast.LENGTH_SHORT).show();
+                        xInitial = motionEvent.getX();
                         break;
                     case MotionEvent.ACTION_UP:
-                        Toast.makeText(MainActivity.this, "Action terminee", Toast.LENGTH_SHORT).show();
+                        float xFinal = motionEvent.getX();
+
+                        if(xInitial<xFinal){
+                            pos--;
+                        }else
+                            pos++;
+
+                        if(pos<0)
+                            pos=0;
+                        else if(pos == mesImages.length)
+                            pos = mesImages.length-1;
+
+                        im.setImageResource(mesImages[pos]);
                         break;
                 }
 
