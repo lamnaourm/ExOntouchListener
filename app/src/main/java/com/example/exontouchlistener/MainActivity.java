@@ -28,23 +28,12 @@ public class MainActivity extends AppCompatActivity {
                 int action = motionEvent.getAction();
 
                 switch (action){
-                    case MotionEvent.ACTION_DOWN:
-                        xInitial = motionEvent.getX();
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        float xFinal = motionEvent.getX();
+                    case MotionEvent.ACTION_MOVE:
+                        float x = motionEvent.getX();
+                        float y = motionEvent.getY();
 
-                        if(xInitial<xFinal){
-                            pos--;
-                        }else
-                            pos++;
-
-                        if(pos<0)
-                            pos=0;
-                        else if(pos == mesImages.length)
-                            pos = mesImages.length-1;
-
-                        im.setImageResource(mesImages[pos]);
+                        im.setX(x);
+                        im.setY(y);
                         break;
                 }
 
