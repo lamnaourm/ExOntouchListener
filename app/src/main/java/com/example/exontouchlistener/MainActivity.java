@@ -22,8 +22,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
 
-                Toast.makeText(MainActivity.this, "X = " + motionEvent.getX() + " - " + motionEvent.getY(), Toast.LENGTH_SHORT).show();
-                return false;
+                int action = motionEvent.getAction();
+
+                switch (action){
+                    case MotionEvent.ACTION_DOWN:
+                        Toast.makeText(MainActivity.this, "Action commencee", Toast.LENGTH_SHORT).show();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        Toast.makeText(MainActivity.this, "Action en cours", Toast.LENGTH_SHORT).show();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        Toast.makeText(MainActivity.this, "Action terminee", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+
+
+                return true;
             }
         });
     }
